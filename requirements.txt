@@ -1,5 +1,5 @@
 opencv-python
 pillow
 google-generativeai
-google-genai
+#google-genai
 python-dotenv
