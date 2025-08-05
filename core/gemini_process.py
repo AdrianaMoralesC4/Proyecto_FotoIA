@@ -37,7 +37,7 @@ def generate_image_with_gemini(image_path):
         prompt = (
             "Eres un artista digital experto. Transforma a la persona en esta foto para que ",
             "esté vestida con el uniforme de una chef. Mantén el fotorrealismo, ",
-            "la misma pose, expresión facial e iluminación. El resultado debe ser solo la imagen."
+            "la misma pose, expresión facial e iluminación, sin cambiarle el género. El resultado debe ser solo la imagen."
         )
 
         # Llama a la API de Gemini con el prompt y la imagen
