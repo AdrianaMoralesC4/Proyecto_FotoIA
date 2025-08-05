@@ -36,7 +36,7 @@ def generate_image_with_gemini(image_path):
         # Crea un prompt descriptivo para obtener mejores resultados
         prompt = (
             "Eres un artista digital experto. Transforma a la persona en esta foto para que ",
-            "esté vestido con el uniforme de un policia. Mantén el fotorrealismo, ",
+            "esté vestida con el uniforme de una chef. Mantén el fotorrealismo, ",
             "la misma pose, expresión facial e iluminación. El resultado debe ser solo la imagen."
         )
 
