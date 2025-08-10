@@ -5,3 +5,4 @@ google-generativeai
 python-dotenv
 pywhatkit
 pywin32
+#instalar flask
