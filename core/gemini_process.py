@@ -21,50 +21,125 @@ def create_dynamic_prompt(profession):
     """
     # Diccionario con listas de prompts para cada profesión
     profession_prompts = {
-        "policia": [
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un policía, en una calle de la ciudad con un coche patrulla de fondo. Mantén el fotorrealismo, la misma pose, expresión facial e género",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un policía, en una comisaría con otros agentes de fondo. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un policía, posando en la entrada de un edificio del gobierno. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "administracion de empresas": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, en una sala de reuniones. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, en una oficina moderna con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, de pie frente a una pizarra de finanzas. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "bombero": [
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un bombero, sosteniendo un casco, en un fondo de una estación de bomberos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un bombero, con una manguera de fondo y un camión de bomberos en la distancia. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un bombero, de pie frente a un edificio en llamas (de manera segura y controlada). Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "arquitectura": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, en un estudio de diseño con planos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, visitando una obra de construcción con un casco. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, presentando una maqueta de un edificio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "medico": [
-            "transforma a la persona en esta foto para que esté vestido con una bata de médico, en una sala de hospital moderna. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un cirujano, en un quirófano. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con ropa de médico, en un consultorio con instrumental médico. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "biomedicina": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, en un laboratorio con microscopios. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, analizando muestras médicas en un ambiente estéril. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, de pie en un laboratorio de investigación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "astronauta": [
-            "transforma a la persona en esta foto para que esté vestido con un traje de astronauta, flotando en el espacio con la Tierra de fondo. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con un traje de astronauta, dentro de la Estación Espacial Internacional. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con un traje de astronauta, de pie en la superficie de la luna con un cielo estrellado. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "bioquimica y farmacia": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un bioquímico, manipulando químicos en un laboratorio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un farmacéutico, atendiendo a un cliente en una farmacia. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un bioquímico, examinando medicamentos en un laboratorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "electricista": [
+        "biotecnologia": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, en un laboratorio de genética con equipos avanzados. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, observando células en un microscopio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, de pie en un invernadero de alta tecnología. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "computacion": [
+            "transforma a la persona en esta foto para que esté vestida con ropa de programador, en una oficina de tecnología con múltiples monitores. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pizarra con código de programación. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa casual, trabajando en una computadora en una cafetería. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "contabilidad y auditoria": [
+            "transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una oficina con libros contables. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un contador, revisando documentos financieros. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una sala de juntas. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "economia": [
+            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, en una sala de reuniones. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, analizando gráficos de mercado. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, dando una conferencia en un auditorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "derecho": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un abogado, en una sala de corte con estanterías de libros legales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con un traje formal de abogado, en un despacho de abogados con una vista de la ciudad. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida como un abogado, de pie en la entrada de un tribunal. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "diseno multimedia": [
+            "transforma a la persona en esta foto para que esté vestida con ropa casual de diseñador, en un estudio de diseño con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pantalla con un diseño gráfico. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa de diseñador, trabajando en una tableta gráfica. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "educacion inicial": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un aula de preescolar. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, leyendo un libro a un grupo de niños. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un patio de juegos con niños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "electronica y automatizacion": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, en un laboratorio con placas de circuitos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, de pie junto a una maquinaria automatizada. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, manipulando un robot industrial. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "electricidad": [
             "transforma a la persona en esta foto para que esté vestido con el uniforme de un electricista, trabajando con un panel eléctrico en un taller. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "transforma a la persona en esta foto para que esté vestido como electricista, con un casco y herramientas, en una obra de construcción. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "transforma a la persona en esta foto para que esté vestido con el uniforme de un electricista, de pie junto a un transformador de energía en un ambiente industrial. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "abogado": [
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un abogado, en una sala de corte con estanterías de libros legales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con un traje formal de abogado, en un despacho de abogados con una vista de la ciudad. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido como un abogado, de pie en la entrada de un tribunal. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "enfermeria": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, en una sala de hospital. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, atendiendo a un paciente en una camilla. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, en una clínica de salud. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "chef": [
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un chef, en una cocina de restaurante de alta gama. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un chef, sosteniendo un plato, en un ambiente de cocina moderna. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un chef, de pie en una pastelería con postres en exhibición. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "fisioterapia": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, en una clínica con equipos de rehabilitación. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, ayudando a un paciente a hacer ejercicio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, en una sesión de rehabilitación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "arquitecto": [
-            "transforma a la persona en esta foto para que esté vestido como un arquitecto, de pie en un estudio con planos y maquetas de edificios. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido como un arquitecto, visitando una obra en construcción con un casco. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido como un arquitecto, con un ordenador y software de diseño de fondo. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "ingenieria automotriz": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, trabajando en el motor de un coche. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, diseñando un vehículo en un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, en una fábrica de coches. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "programador": [
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un programador, en una oficina de tecnología con varios monitores. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con ropa de programador, de pie frente a una pizarra con código. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con un suéter con capucha, programando en una cafetería. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        "ingenieria civil": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, en una obra de construcción con un casco. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, revisando planos de un edificio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, de pie en un puente. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "ingenieria industrial": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, en una línea de producción optimizada. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, de pie en una fábrica con robots. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, analizando un proceso de fabricación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "mecatronica": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, de pie en un taller de robótica. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, ensamblando un robot. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, trabajando en una interfaz humano-robot. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "negocios digitales": [
+            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en una oficina de marketing digital con gráficos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, de pie frente a una pizarra con estrategias digitales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en un espacio de coworking. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "odontologia": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, en un consultorio dental. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, con un paciente en la silla. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, sosteniendo herramientas dentales. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "pedagogia de la actividad fisica y deporte": [
+            "transforma a la persona en esta foto para que esté vestida con ropa deportiva, en una cancha de baloncesto con estudiantes. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa deportiva, en un gimnasio con equipos de entrenamiento. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con ropa deportiva, enseñando a un grupo de niños a jugar al fútbol. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "psicologia": [
+            "transforma a la persona en esta foto para que esté vestida como un psicólogo, en un consultorio con un diván. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida como un psicólogo, de pie en una sala de terapia grupal. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida como un psicólogo, escribiendo notas en un portapapeles. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "psicologia clinica": [
+            "transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, en un consultorio con un diván. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, de pie en un hospital con un portapapeles. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, en una sesión de terapia. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
     }
 
