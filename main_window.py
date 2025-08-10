@@ -334,8 +334,19 @@ def clear_images():
 
 
 if __name__ == '__main__':
+    # Aquí puedes cambiar la IP y el puerto si lo necesitas
+    host_ip = '0.0.0.0'
+    port_number = 5000
+
+    # Imprime el mensaje con el enlace en la consola
+    print("--------------------------------------------------")
+    print(f"La aplicación Flask está corriendo en http://127.0.0.1:{port_number}")
+    print("Haz clic en el enlace de arriba para abrir la aplicación en tu navegador.")
+    print("--------------------------------------------------")
+    
     try:
-        app.run(host='0.0.0.0', port=5000, debug=False)
+        app.run(host=host_ip, port=port_number, debug=False)
     finally:
+        # Esto se ejecuta si la aplicación se detiene
         if cap is not None:
             cap.release()
