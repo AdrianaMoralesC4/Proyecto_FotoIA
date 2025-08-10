@@ -126,15 +126,30 @@ def index():
                         <label for="profesion">Profesión:</label>
                         <select id="profesion" name="profesion" required>
                             <option value="">Seleccione una profesión</option>
-                            <option value="policia">Policía</option>
-                            <option value="electricista">Electricista</option>
-                            <option value="bombero">Bombero</option>
-                            <option value="abogado">Abogado</option>
-                            <option value="medico">Médico</option>
-                            <option value="arquitecto">Arquitecto</option>
-                            <option value="chef">Chef</option>
-                            <option value="programador">Programador</option>
-                            <option value="astronauta">Astronauta</option>
+                            <option value="administracion de empresas">Administracion de Empresas</option>
+                            <option value="arquitectura">Arquitectura</option>
+                            <option value="biomedicina">Biomedicina</option>
+                            <option value="bioquimica y farmacia">Bioquimica y Farmacia</option>
+                            <option value="biotecnologia">Biotecnologia</option>
+                            <option value="computacion">Computacion</option>
+                            <option value="contabilidad y auditoria">Contabilidad y Auditoria</option>
+                            <option value="economia">Economia</option>
+                            <option value="derecho">Derecho</option>
+                            <option value="diseno multimedia">Diseno Multimedia</option>
+                            <option value="educacion inicial">Educacion Inicial</option>
+                            <option value="electronica y automatizacion">Electronica y Automatizacion</option>
+                            <option value="electricidad">Electricidad</option>
+                            <option value="enfermeria">Enfermeria</option>
+                            <option value="fisioterapia">Fisioterapia</option>
+                            <option value="ingenieria automotriz">Ingenieria Automotriz</option>
+                            <option value="ingenieria civil">Ingenieria Civil</option>
+                            <option value="ingenieria industrial">Ingenieria Industrial</option>
+                            <option value="mecatronica">Mecatronica</option>
+                            <option value="negocios digitales">Negocios Digitales</option>
+                            <option value="odontologia">Odontologia</option>
+                            <option value="pedagogia de la actividad fisica y deporte">Pedagogia de la Actividad Fisica y Deporte</option>
+                            <option value="psicologia">Psicologia</option>
+                            <option value="psicologia clinica">Psicologia Clinica</option>
                         </select>
                         <label for="email">Correo Electrónico:</label>
                         <input type="email" id="email" name="email" required>
