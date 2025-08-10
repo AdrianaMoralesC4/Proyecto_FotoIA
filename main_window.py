@@ -97,7 +97,7 @@ def index():
                 }
                 #original_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
                 #generated_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
-                
+                         
                 .form-container { 
                     width: 300px; 
                     padding: 20px; 
@@ -106,6 +106,13 @@ def index():
                     text-align: left; 
                     background-color: #f0f0f0; 
                 }
+                
+                .form-container button{
+                    height: 40px; 
+                    width: 100%;   
+                    margin-bottom: 15px;
+                }
+                                  
                 .form-container label, .form-container input, .form-container select { 
                     display: block; 
                     width: 100%; 
@@ -125,11 +132,6 @@ def index():
             <p>Presiona el botón "Capturar y Generar" para tomar una foto y transformarla.</p>
             
             <div class="main-content">
-                <div class="image-box">
-                    <h2>En Vivo</h2>
-                    <img id="original_image" src="{{ url_for('video_feed') }}">
-                </div>
-
                 <div class="form-container">
                     <h2>Datos del Estudiante</h2>
                     <form id="data-form">
@@ -172,6 +174,11 @@ def index():
                         <button type="button" onclick="sendToWhatsapp()">Enviar Whatsapp</button>
                         <button type="button" onclick="sendToEmail()">Enviar Email</button>
                     </form>
+                </div>
+                                  
+                <div class="image-box">
+                    <h2>En Vivo</h2>
+                    <img id="original_image" src="{{ url_for('video_feed') }}">
                 </div>
 
                 <div class="image-box">
