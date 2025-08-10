@@ -376,7 +376,7 @@ def send_to_email():
         <html>
             <body>
                 <h2>Hola {nombre},</h2>
-                <p>Aquí tienes tu imagen transformada como {profesion}.</p>
+                <p>Aquí tienes tu imagen transformada con la profesión de {profesion}.</p>
                 <p>¡Esperamos que te guste!</p>
                 <img src="cid:image1" width="400">
                 <p>Saludos,<br>El equipo de Transformación Profesional</p>
