@@ -3,3 +3,4 @@ pillow
 google-generativeai
 #google-genai
 python-dotenv
+#instalar flask
