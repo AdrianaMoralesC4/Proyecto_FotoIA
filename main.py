@@ -9,8 +9,8 @@ def main():
     """
     Función principal de la aplicación.
     """
-    print("--- Transformación Profesional Instantánea ---")
-    print("Presiona 'c' para tomar una foto, 'q' para salir.")
+    #print("--- Transformación Profesional Instantánea ---")
+    #print("Presiona 'c' para tomar una foto, 'q' para salir.")
     
     # 1. Configurar la webcam
     cap = cv2.VideoCapture(0)

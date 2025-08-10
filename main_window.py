@@ -9,6 +9,13 @@ from io import BytesIO
 import base64
 import threading
 import pywhatkit as kit
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -22,6 +29,13 @@ output_frame = None
 lock = threading.Lock()
 generated_image_bytes = None
 generated_image_path = os.path.join(image_dir, "generated.png") # Ruta para la imagen generada
+
+EMAIL_CONFIG = {
+    'sender': 'proyectofotoia@gmail.com', # Tu dirección de email
+    'password' : os.getenv("PASSWORD_EMAIL"), # Tu contraseña o app password
+    'smtp_server' : 'smtp.gmail.com', # Servidor SMTP (para Gmail)
+    'port' : 587 # Puerto para TLS
+}
 
 def get_camera_feed():
     """Genera el feed de la cámara para la interfaz web."""
@@ -119,10 +133,8 @@ def index():
                 <div class="form-container">
                     <h2>Datos del Estudiante</h2>
                     <form id="data-form">
-                        <label for="nombre">Nombre:</label>
+                        <label for="nombre">Nombre Y Apellido del estudiante:</label>
                         <input type="text" id="nombre" name="nombre" required>
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellido" name="apellido" required>
                         <label for="profesion">Profesión:</label>
                         <select id="profesion" name="profesion" required>
                             <option value="">Seleccione una profesión</option>
@@ -142,7 +154,8 @@ def index():
                         <input type="tel" id="whatsapp" name="whatsapp" required>
                         <button type="button" onclick="captureAndGenerate()">Capturar y Generar</button>
                         <button type="button" onclick="clearImages()">Limpiar</button>
-                        <button type="button" onclick="sendToWhatsapp()">Enviar</button>
+                        <button type="button" onclick="sendToWhatsapp()">Enviar Whatsapp</button>
+                        <button type="button" onclick="sendToEmail()">Enviar Email</button>
                     </form>
                 </div>
 
@@ -167,7 +180,6 @@ def index():
                         method: 'POST',
                         body: JSON.stringify({
                             nombre: formData.get('nombre'),
-                            apellido: formData.get('apellido'),
                             profesion: profesion,
                             email: formData.get('email'),
                             whatsapp: formData.get('whatsapp')
@@ -198,6 +210,39 @@ def index():
                                 document.getElementById('generated_image').src = "";
                             }
                         });
+                }
+                                  
+                function sendToEmail(){
+                    const form = document.getElementById('data-form');
+                    const formData = new FormData(form);
+                    const email_address = formData.get('email')
+                                  
+                    if (document.getElementById('generated_image').src === "") {
+                        alert("Primero debes generar una imagen.");
+                        return;
+                    }
+                                  
+                    fetch('/send_to_email', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            email: email_address,
+                            nombre: formData.get('nombre'),
+                            apellido: formData.get('apellido'),
+                            profesion: formData.get('profesion')
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Ocurrió un error al enviar el email.');
+                    });
+                                  
                 }
 
                 function sendToWhatsapp() {
@@ -287,6 +332,60 @@ def capture():
         return jsonify({"status": "success", "generated_image_url": image_data_uri})
     else:
         return jsonify({"status": "error", "message": "No se pudo generar la imagen con Gemini."})
+    
+
+@app.route('/send_to_email', methods=['POST'])
+def send_to_email():
+    """Ruta para enviar la imagen generada al email del estudiante."""
+    global generated_image_path
+    data = request.get_json()
+    email = data.get('email')
+    nombre = data.get('nombre')
+    profesion = data.get('profesion')
+
+    #if not email:
+        #return jsonify({"status": "error", "message": "Dirección de email no proporcionada."})
+    
+    if not os.path.exists(generated_image_path):
+        return jsonify({"status": "error", "message": "No hay una imagen generada para enviar."})
+    
+    try:
+        #Crear el mensaje
+        msg = MIMEMultipart()
+        msg['From'] = EMAIL_CONFIG["sender"]
+        msg['To'] = email
+        msg['Subject'] = f"Tu transformación profesional como {profesion}"
+
+        #Cuerpo del mensaje
+        body = f"""
+        <html>
+            <body>
+                <h2>Hola {nombre},</h2>
+                <p>Aquí tienes tu imagen transformada como {profesion}.</p>
+                <p>¡Esperamos que te guste!</p>
+                <img src="cid:image1" width="400">
+                <p>Saludos,<br>El equipo de Transformación Profesional</p>
+            </body>
+        </html>
+        """
+        msg.attach(MIMEText(body, 'html'))
+
+        #Adjuntar la imagen
+        with open(generated_image_path, 'rb') as img_file:
+            img = MIMEImage(img_file.read())
+            img.add_header('Content-ID', '<image1>')
+            msg.attach(img)
+
+        with smtplib.SMTP(EMAIL_CONFIG["smtp_server"], EMAIL_CONFIG["port"]) as server:
+            server.starttls()
+            server.login(EMAIL_CONFIG["sender"], EMAIL_CONFIG["password"])
+            server.send_message(msg)
+
+        return jsonify({"status": "success", "message": f"Email enviado exitosamente a {email}."})
+    
+    except Exception as e:
+        print(f"Error al enviar el email: {e}")
+        return jsonify({"status": "error", "message": f"Error al enviar el email. Error: {str(e)}"})
 
 @app.route('/send_to_whatsapp', methods=['POST'])
 def send_to_whatsapp():

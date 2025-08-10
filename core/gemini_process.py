@@ -67,8 +67,8 @@ def create_dynamic_prompt(profession):
             "transforma a la persona en esta foto para que esté vestido con un suéter con capucha, programando en una cafetería. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
     }
-    
-    # Obtenemos la lista de prompts para la profesión o una lista por defecto si no existe
+
+# Obtenemos la lista de prompts para la profesión o una lista por defecto si no existe
     prompts_list = profession_prompts.get(profession.lower(), ["vestido con la ropa de un profesional, en un entorno de oficina."])
     
     # Seleccionamos un prompt al azar de la lista
@@ -97,18 +97,10 @@ def generate_image_with_gemini(image_path, profession):
         # Configura el cliente de la API de Gemini
         client = genai.Client(api_key=API_KEY)
 
-
         # Genera el prompt dinámicamente con la profesión
         prompt = create_dynamic_prompt(profession)
         
         print(f"Prompt enviado a Gemini: {prompt}")
-        
-        # Crea un prompt descriptivo para obtener mejores resultados
-        prompt = (
-            "Eres un artista digital experto. Transforma a la persona en esta foto para que ",
-            "esté vestida con el uniforme de una chef. Mantén el fotorrealismo, ",
-            "la misma pose, expresión facial e iluminación, sin cambiarle el género. El resultado debe ser solo la imagen."
-        )
 
         # Llama a la API de Gemini con el prompt y la imagen
         response = client.models.generate_content(
