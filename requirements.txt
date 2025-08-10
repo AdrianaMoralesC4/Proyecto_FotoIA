@@ -3,3 +3,5 @@ pillow
 google-generativeai
 #google-genai
 python-dotenv
+pywhatkit
+pywin32

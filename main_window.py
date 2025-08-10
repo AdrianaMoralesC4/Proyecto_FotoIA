@@ -1,6 +1,6 @@
 # main_window.py
 
-from flask import Flask, render_template_string, Response, request
+from flask import Flask, render_template_string, Response, request, jsonify
 import cv2
 import os
 from core.gemini_process import generate_image_with_gemini
@@ -8,6 +8,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 import threading
+import pywhatkit as kit
 
 app = Flask(__name__)
 
@@ -20,6 +21,7 @@ cap = None
 output_frame = None
 lock = threading.Lock()
 generated_image_bytes = None
+generated_image_path = os.path.join(image_dir, "generated.png") # Ruta para la imagen generada
 
 def get_camera_feed():
     """Genera el feed de la cámara para la interfaz web."""
@@ -41,17 +43,17 @@ def get_camera_feed():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
             
-def generate_image_process(original_path):
+def generate_image_process(original_path, profession):
     """
     Función que ejecuta el proceso de generación de imagen de Gemini en un hilo.
     """
     global generated_image_bytes
     print("Enviando foto a Gemini... Esto puede tomar unos segundos.")
-    generated_image_bytes = generate_image_with_gemini(original_path)
+    generated_image_bytes = generate_image_with_gemini(original_path, profession)
 
 @app.route('/')
 def index():
-    """Ruta principal que muestra la interfaz web."""
+    """Ruta principal que muestra la interfaz web con el formulario."""
     return render_template_string("""
         <!DOCTYPE html>
         <html>
@@ -59,13 +61,42 @@ def index():
             <title>Transformación Profesional Instantánea</title>
             <style>
                 body { font-family: Arial, sans-serif; text-align: center; margin: 0px; background-color: #FFFFFF; }
-                header { display: flex; align-items: center; justify-content: space-between; background-color: #00B2EE; padding: 20px ; color: white; border: 5px solid #000000;}
+                header { display: flex; align-items: center; justify-content: space-between; background-color: #00B2EE; padding: 20px; color: white; border: 5px solid #000000; }
                 #header-logo { width: -20%; height: 50px; margin-left: 20px; }
                 .header-title { flex-grow: 1; text-align: center; }
-                .container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-                .image-box { border: 10px solid #000000; padding: 10px; width: 620px; height: 540px; background-color: #304870; color: white; }
-                #original_image  {  border: 5px solid #F5EF2C; width: 98%; height: -100%; object-fit: contain; }
-                #generated_image {  border: 5px solid #F5EF2C; width: 98%; height: -100%; object-fit: contain; }
+                
+                .main-content { 
+                    display: flex; 
+                    justify-content: center; 
+                    align-items: flex-start; 
+                    gap: 10px; 
+                    margin-top: 100px; 
+                }
+
+                .image-box { 
+                    border: 10px solid #000000; 
+                    padding: 10px; 
+                    width: 620px; 
+                    height: 540px; 
+                    background-color: #304870; 
+                    color: white; 
+                }
+                #original_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
+                #generated_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
+                
+                .form-container { 
+                    width: 300px; 
+                    padding: 20px; 
+                    border: 5px solid #00B2EE; 
+                    border-radius: 10px; 
+                    text-align: left; 
+                    background-color: #f0f0f0; 
+                }
+                .form-container label, .form-container input, .form-container select { 
+                    display: block; 
+                    width: 100%; 
+                    margin-bottom: 10px; 
+                }
             </style>
         </head>
         <body>
@@ -76,17 +107,45 @@ def index():
                 </div>
                 <div></div>
             </header>
+            
             <p>Presiona el botón "Capturar y Generar" para tomar una foto y transformarla.</p>
             
-            <button onclick="captureAndGenerate()">Capturar y Generar</button>
-            <button onclick="clearImages()">Limpiar</button>
-            <br><br>
-            
-            <div class="container">
+            <div class="main-content">
                 <div class="image-box">
                     <h2>En Vivo</h2>
                     <img id="original_image" src="{{ url_for('video_feed') }}">
                 </div>
+
+                <div class="form-container">
+                    <h2>Datos del Estudiante</h2>
+                    <form id="data-form">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                        <label for="profesion">Profesión:</label>
+                        <select id="profesion" name="profesion" required>
+                            <option value="">Seleccione una profesión</option>
+                            <option value="policia">Policía</option>
+                            <option value="electricista">Electricista</option>
+                            <option value="bombero">Bombero</option>
+                            <option value="abogado">Abogado</option>
+                            <option value="medico">Médico</option>
+                            <option value="arquitecto">Arquitecto</option>
+                            <option value="chef">Chef</option>
+                            <option value="programador">Programador</option>
+                            <option value="astronauta">Astronauta</option>
+                        </select>
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="whatsapp">Número de WhatsApp:</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required>
+                        <button type="button" onclick="captureAndGenerate()">Capturar y Generar</button>
+                        <button type="button" onclick="clearImages()">Limpiar</button>
+                        <button type="button" onclick="sendToWhatsapp()">Enviar</button>
+                    </form>
+                </div>
+
                 <div class="image-box">
                     <h2>Imagen Generada</h2>
                     <img id="generated_image" src="">
@@ -95,23 +154,44 @@ def index():
 
             <script>
                 function captureAndGenerate() {
-                    fetch('/capture', { method: 'POST' })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.status === 'success') {
-                                document.getElementById('generated_image').src = data.generated_image_url;
-                            } else {
-                                alert('Error al generar la imagen: ' + data.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Ocurrió un error al procesar la solicitud.');
-                        });
+                    const form = document.getElementById('data-form');
+                    const formData = new FormData(form);
+                    const profesion = formData.get('profesion');
+
+                    if (profesion === "") {
+                        alert("Por favor, selecciona una profesión.");
+                        return;
+                    }
+
+                    fetch('/capture', { 
+                        method: 'POST',
+                        body: JSON.stringify({
+                            nombre: formData.get('nombre'),
+                            apellido: formData.get('apellido'),
+                            profesion: profesion,
+                            email: formData.get('email'),
+                            whatsapp: formData.get('whatsapp')
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            document.getElementById('generated_image').src = data.generated_image_url;
+                        } else {
+                            alert('Error al generar la imagen: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Ocurrió un error al procesar la solicitud.');
+                    });
                 }
                 
                 function clearImages() {
-                     fetch('/clear', { method: 'POST' })
+                    fetch('/clear', { method: 'POST' })
                         .then(response => response.json())
                         .then(data => {
                             if (data.status === 'success') {
@@ -120,9 +200,42 @@ def index():
                         });
                 }
 
-                // Actualiza la imagen original sin recargar la página
-                // La imagen de la webcam se transmite continuamente
-                // y se muestra en la etiqueta <img>.
+                function sendToWhatsapp() {
+                    const form = document.getElementById('data-form');
+                    const formData = new FormData(form);
+                    const whatsapp_number = formData.get('whatsapp');
+                    const profesion = formData.get('profesion');
+
+                    if (!whatsapp_number) {
+                        alert("Por favor, ingresa un número de WhatsApp.");
+                        return;
+                    }
+
+                    if (document.getElementById('generated_image').src === "") {
+                        alert("Primero debes generar una imagen.");
+                        return;
+                    }
+
+                    fetch('/send_to_whatsapp', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            whatsapp: whatsapp_number,
+                            nombre: formData.get('nombre'),
+                            profesion: profesion
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Ocurrió un error al enviar el mensaje de WhatsApp.');
+                    });
+                }
             </script>
         </body>
         </html>
@@ -140,38 +253,73 @@ def capture():
     Ruta que captura la foto de la cámara, la procesa con Gemini
     y devuelve la imagen generada.
     """
-    global cap, output_frame, generated_image_bytes
+    global cap, generated_image_bytes, generated_image_path
 
     if cap is None or not cap.isOpened():
-        return {"status": "error", "message": "No se pudo acceder a la cámara."}
+        return jsonify({"status": "error", "message": "No se pudo acceder a la cámara."})
 
-    # Captura un solo frame
+    data = request.get_json()
+    profession = data.get('profesion')
+
+    if not profession:
+        return jsonify({"status": "error", "message": "No se seleccionó ninguna profesión."})
+
     ret, frame = cap.read()
     if not ret:
-        return {"status": "error", "message": "No se pudo capturar el frame."}
+        return jsonify({"status": "error", "message": "No se pudo capturar el frame."})
 
     original_path = os.path.join(image_dir, "original.png")
     cv2.imwrite(original_path, frame)
     print(f"Foto original guardada en {original_path}")
     
-    # Inicia el proceso de Gemini en un hilo separado para no bloquear la interfaz
-    gemini_thread = threading.Thread(target=generate_image_process, args=(original_path,))
+    gemini_thread = threading.Thread(target=generate_image_process, args=(original_path, profession))
     gemini_thread.start()
-    gemini_thread.join() # Espera a que termine el hilo para obtener el resultado
+    gemini_thread.join()
 
     if generated_image_bytes:
-        generated_image_path = os.path.join(image_dir, "generated.png")
         generated_image_pil = Image.open(BytesIO(generated_image_bytes.data))
         generated_image_pil.save(generated_image_path)
         print(f"Imagen generada guardada en {generated_image_path}")
 
-        # Codifica la imagen generada en base64 para mostrarla en el HTML
         encoded_image = base64.b64encode(generated_image_bytes.data).decode('utf-8')
         image_data_uri = f"data:image/png;base64,{encoded_image}"
         
-        return {"status": "success", "generated_image_url": image_data_uri}
+        return jsonify({"status": "success", "generated_image_url": image_data_uri})
     else:
-        return {"status": "error", "message": "No se pudo generar la imagen con Gemini."}
+        return jsonify({"status": "error", "message": "No se pudo generar la imagen con Gemini."})
+
+@app.route('/send_to_whatsapp', methods=['POST'])
+def send_to_whatsapp():
+    """Ruta para enviar la imagen generada al WhatsApp del estudiante."""
+    global generated_image_path
+    data = request.get_json()
+    whatsapp_number = data.get('whatsapp')
+    nombre = data.get('nombre')
+    profesion = data.get('profesion')
+
+    if not whatsapp_number:
+        return jsonify({"status": "error", "message": "Número de WhatsApp no proporcionado."})
+
+    if not os.path.exists(generated_image_path):
+        return jsonify({"status": "error", "message": "No hay una imagen generada para enviar."})
+    
+    # El número de WhatsApp debe incluir el código de país.
+    # Es recomendable que el estudiante lo ingrese así desde el principio.
+    # Ejemplo para Ecuador: "+593987654321"
+    
+    message = f"Hola {nombre}, aquí está tu foto generada con la profesión de {profesion}."
+    
+    try:
+        print(f"Enviando imagen y texto a {whatsapp_number}...")
+        
+        # Esta línea de código enviará la imagen Y el texto (caption)
+        kit.sendwhats_image(whatsapp_number, generated_image_path, caption=message)
+
+        return jsonify({"status": "success", "message": f"Imagen y texto enviados a WhatsApp exitosamente a {whatsapp_number}."})
+    except Exception as e:
+        print(f"Error al enviar la imagen a WhatsApp: {e}")
+        return jsonify({"status": "error", "message": f"Error al enviar la imagen a WhatsApp. Asegúrate de que el número sea válido y WhatsApp Web esté abierto. Error: {e}"})
+
 
 @app.route('/clear', methods=['POST'])
 def clear_images():
@@ -182,7 +330,8 @@ def clear_images():
         os.remove(os.path.join(image_dir, "generated.png"))
     except FileNotFoundError:
         pass
-    return {"status": "success"}
+    return jsonify({"status": "success"})
+
 
 if __name__ == '__main__':
     try:
