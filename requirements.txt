@@ -6,3 +6,5 @@ python-dotenv
 pywhatkit
 pywin32
 flask
+pandas 
+openpyxl

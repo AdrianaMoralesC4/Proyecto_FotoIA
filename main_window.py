@@ -14,6 +14,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from dotenv import load_dotenv
+import pandas as pd # <-- ¡Nuevo! Importamos pandas
 
 load_dotenv()
 
@@ -29,6 +30,8 @@ output_frame = None
 lock = threading.Lock()
 generated_image_bytes = None
 generated_image_path = os.path.join(image_dir, "generated.png") # Ruta para la imagen generada
+marco_path = os.path.join(image_dir, "marco.png") # Ruta del marco
+EXCEL_FILE_PATH = "registros_estudiantes.xlsx" # <-- ¡Nuevo! Ruta para el archivo de Excel
 
 EMAIL_CONFIG = {
     'sender': 'proyectofotoia@gmail.com', # Tu dirección de email
@@ -55,7 +58,7 @@ def get_camera_feed():
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
             
 def generate_image_process(original_path, profession):
     """
@@ -64,6 +67,50 @@ def generate_image_process(original_path, profession):
     global generated_image_bytes
     print("Enviando foto a Gemini... Esto puede tomar unos segundos.")
     generated_image_bytes = generate_image_with_gemini(original_path, profession)
+
+def superponer_marco(imagen_generada_bytes, ruta_marco):
+    """Superpone un marco a la imagen generada."""
+    try:
+        # Cargar la imagen generada y el marco
+        img_generada = Image.open(BytesIO(imagen_generada_bytes))
+        img_marco = Image.open(ruta_marco)
+        
+        # Redimensionar el marco para que coincida con la imagen generada
+        img_marco = img_marco.resize(img_generada.size, Image.LANCZOS)
+        
+        # Superponer el marco (asumiendo que el marco tiene transparencia)
+        img_generada.paste(img_marco, (0, 0), img_marco)
+        
+        # Guardar la imagen final en un buffer para ser usada
+        buffer = BytesIO()
+        img_generada.save(buffer, format="PNG")
+        buffer.seek(0)
+        return buffer.getvalue()
+    except FileNotFoundError:
+        print(f"Error: No se encontró el archivo del marco en {ruta_marco}")
+        return None
+    except Exception as e:
+        print(f"Error al superponer el marco: {e}")
+        return None
+
+# --- ¡NUEVA FUNCIÓN! Guardar datos en Excel ---
+def save_student_data(data):
+    """Guarda los datos del estudiante en un archivo de Excel."""
+    try:
+        df = pd.DataFrame([data])
+        
+        if os.path.exists(EXCEL_FILE_PATH):
+            # Si el archivo existe, leemos los datos existentes y concatenamos
+            existing_df = pd.read_excel(EXCEL_FILE_PATH)
+            updated_df = pd.concat([existing_df, df], ignore_index=True)
+            updated_df.to_excel(EXCEL_FILE_PATH, index=False)
+            print(f"Datos de {data['nombre']} agregados al archivo de Excel.")
+        else:
+            # Si no existe, creamos uno nuevo
+            df.to_excel(EXCEL_FILE_PATH, index=False)
+            print("Archivo de Excel creado con los primeros datos.")
+    except Exception as e:
+        print(f"Error al guardar los datos en Excel: {e}")
 
 @app.route('/')
 def index():
@@ -97,7 +144,7 @@ def index():
                 }
                 #original_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
                 #generated_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
-                         
+                                
                 .form-container { 
                     width: 300px; 
                     padding: 20px; 
@@ -109,10 +156,10 @@ def index():
                 
                 .form-container button{
                     height: 40px; 
-                    width: 100%;   
+                    width: 100%;  
                     margin-bottom: 15px;
                 }
-                                  
+                                     
                 .form-container label, .form-container input, .form-container select { 
                     display: block; 
                     width: 100%; 
@@ -141,29 +188,41 @@ def index():
                         <select id="profesion" name="profesion" required>
                             <option value="">Seleccione una profesión</option>
                             <option value="administracion de empresas">Administracion de Empresas</option>
+                            <option value="antropologia">Antropología</option>
                             <option value="arquitectura">Arquitectura</option>
                             <option value="biomedicina">Biomedicina</option>
                             <option value="bioquimica y farmacia">Bioquimica y Farmacia</option>
                             <option value="biotecnologia">Biotecnologia</option>
+                            <option value="ciencias de datos">Ciencias de Datos</option>
+                            <option value="ciencias politicas">Ciencias Políticas</option>
+                            <option value="comercio exterior">Comercio Exterior</option>
+                            <option value="comunicacion">Comunicación</option>
                             <option value="computacion">Computacion</option>
                             <option value="contabilidad y auditoria">Contabilidad y Auditoria</option>
-                            <option value="economia">Economia</option>
                             <option value="derecho">Derecho</option>
                             <option value="diseno multimedia">Diseno Multimedia</option>
+                            <option value="economia">Economia</option>
+                            <option value="educacion basica">Educación Básica</option>
                             <option value="educacion inicial">Educacion Inicial</option>
+                            <option value="educacion intercultural bilingue">Eduación Intercultural Bilingüe</option>
                             <option value="electronica y automatizacion">Electronica y Automatizacion</option>
                             <option value="electricidad">Electricidad</option>
                             <option value="enfermeria">Enfermeria</option>
+                            <option value="finanzas">Finanzas</option>
                             <option value="fisioterapia">Fisioterapia</option>
+                            <option value="gestion ambiental">Gestión Ambiental</option>
                             <option value="ingenieria automotriz">Ingenieria Automotriz</option>
                             <option value="ingenieria civil">Ingenieria Civil</option>
                             <option value="ingenieria industrial">Ingenieria Industrial</option>
+                            <option value="marketing e inteligencia de mercados">Marketing e Inteligencia de Mercados</option>
                             <option value="mecatronica">Mecatronica</option>
                             <option value="negocios digitales">Negocios Digitales</option>
                             <option value="odontologia">Odontologia</option>
                             <option value="pedagogia de la actividad fisica y deporte">Pedagogia de la Actividad Fisica y Deporte</option>
                             <option value="psicologia">Psicologia</option>
                             <option value="psicologia clinica">Psicologia Clinica</option>
+                            <option value="software">Software</option>
+                            <option value="teologia">Teología</option>
                         </select>
                         <label for="email">Correo Electrónico:</label>
                         <input type="email" id="email" name="email" required>
@@ -175,7 +234,7 @@ def index():
                         <button type="button" onclick="sendToEmail()">Enviar Email</button>
                     </form>
                 </div>
-                                  
+                                     
                 <div class="image-box">
                     <h2>En Vivo</h2>
                     <img id="original_image" src="{{ url_for('video_feed') }}">
@@ -233,17 +292,17 @@ def index():
                             }
                         });
                 }
-                                  
+                                     
                 function sendToEmail(){
                     const form = document.getElementById('data-form');
                     const formData = new FormData(form);
                     const email_address = formData.get('email')
-                                  
+                                     
                     if (document.getElementById('generated_image').src === "") {
                         alert("Primero debes generar una imagen.");
                         return;
                     }
-                                  
+                                     
                     fetch('/send_to_email', {
                         method: 'POST',
                         body: JSON.stringify({
@@ -264,7 +323,7 @@ def index():
                         console.error('Error:', error);
                         alert('Ocurrió un error al enviar el email.');
                     });
-                                  
+                                     
                 }
 
                 function sendToWhatsapp() {
@@ -317,10 +376,10 @@ def video_feed():
 @app.route('/capture', methods=['POST'])
 def capture():
     """
-    Ruta que captura la foto de la cámara, la procesa con Gemini
-    y devuelve la imagen generada.
+    Ruta que captura la foto de la cámara, la procesa con Gemini,
+    le añade un marco y devuelve la imagen final.
     """
-    global cap, generated_image_bytes, generated_image_path
+    global cap, generated_image_bytes, generated_image_path, marco_path
 
     if cap is None or not cap.isOpened():
         return jsonify({"status": "error", "message": "No se pudo acceder a la cámara."})
@@ -344,14 +403,21 @@ def capture():
     gemini_thread.join()
 
     if generated_image_bytes:
-        generated_image_pil = Image.open(BytesIO(generated_image_bytes.data))
-        generated_image_pil.save(generated_image_path)
-        print(f"Imagen generada guardada en {generated_image_path}")
-
-        encoded_image = base64.b64encode(generated_image_bytes.data).decode('utf-8')
-        image_data_uri = f"data:image/png;base64,{encoded_image}"
+        # Superponer el marco a la imagen generada
+        final_image_bytes = superponer_marco(generated_image_bytes.data, marco_path)
         
-        return jsonify({"status": "success", "generated_image_url": image_data_uri})
+        if final_image_bytes:
+            # Guardar la imagen final con el marco
+            with open(generated_image_path, 'wb') as f:
+                f.write(final_image_bytes)
+            print(f"Imagen final con marco guardada en {generated_image_path}")
+
+            encoded_image = base64.b64encode(final_image_bytes).decode('utf-8')
+            image_data_uri = f"data:image/png;base64,{encoded_image}"
+        
+            return jsonify({"status": "success", "generated_image_url": image_data_uri})
+        else:
+            return jsonify({"status": "error", "message": "Error al superponer el marco."})
     else:
         return jsonify({"status": "error", "message": "No se pudo generar la imagen con Gemini."})
     
@@ -364,10 +430,11 @@ def send_to_email():
     email = data.get('email')
     nombre = data.get('nombre')
     profesion = data.get('profesion')
-
-    #if not email:
-        #return jsonify({"status": "error", "message": "Dirección de email no proporcionada."})
     
+    # --- ¡Nuevo! Registramos los datos en el Excel ---
+    student_data = {'nombre': nombre, 'profesion': profesion, 'email': email, 'whatsapp': None}
+    save_student_data(student_data)
+
     if not os.path.exists(generated_image_path):
         return jsonify({"status": "error", "message": "No hay una imagen generada para enviar."})
     
@@ -412,11 +479,15 @@ def send_to_email():
 @app.route('/send_to_whatsapp', methods=['POST'])
 def send_to_whatsapp():
     """Ruta para enviar la imagen generada al WhatsApp del estudiante."""
-    global generated_image_path
+    global generated_image_path 
     data = request.get_json()
     whatsapp_number = data.get('whatsapp')
     nombre = data.get('nombre')
     profesion = data.get('profesion')
+    
+    # --- ¡Nuevo! Registramos los datos en el Excel ---
+    student_data = {'nombre': nombre, 'profesion': profesion, 'email': None, 'whatsapp': whatsapp_number}
+    save_student_data(student_data)
 
     if not whatsapp_number:
         return jsonify({"status": "error", "message": "Número de WhatsApp no proporcionado."})
@@ -424,16 +495,10 @@ def send_to_whatsapp():
     if not os.path.exists(generated_image_path):
         return jsonify({"status": "error", "message": "No hay una imagen generada para enviar."})
     
-    # El número de WhatsApp debe incluir el código de país.
-    # Es recomendable que el estudiante lo ingrese así desde el principio.
-    # Ejemplo para Ecuador: "+593987654321"
-    
     message = f"Hola {nombre}, aquí está tu foto generada con la profesión de {profesion}."
     
     try:
         print(f"Enviando imagen y texto a {whatsapp_number}...")
-        
-        # Esta línea de código enviará la imagen Y el texto (caption)
         kit.sendwhats_image(whatsapp_number, generated_image_path, caption=message)
 
         return jsonify({"status": "success", "message": f"Imagen y texto enviados a WhatsApp exitosamente a {whatsapp_number}."})
@@ -441,25 +506,26 @@ def send_to_whatsapp():
         print(f"Error al enviar la imagen a WhatsApp: {e}")
         return jsonify({"status": "error", "message": f"Error al enviar la imagen a WhatsApp. Asegúrate de que el número sea válido y WhatsApp Web esté abierto. Error: {e}"})
 
-
 @app.route('/clear', methods=['POST'])
 def clear_images():
-    """Ruta para limpiar la imagen generada en la interfaz."""
+    """Ruta para limpiar la imagen generada y la imagen con el marco en la interfaz."""
     global generated_image_bytes
     generated_image_bytes = None
     try:
         os.remove(os.path.join(image_dir, "generated.png"))
     except FileNotFoundError:
         pass
+    try:
+        os.remove(os.path.join(image_dir, "generated_framed.png"))
+        print("Imagen con marco eliminada.")
+    except FileNotFoundError:
+        pass
     return jsonify({"status": "success"})
 
-
 if __name__ == '__main__':
-    # Aquí puedes cambiar la IP y el puerto si lo necesitas
     host_ip = '0.0.0.0'
     port_number = 5000
 
-    # Imprime el mensaje con el enlace en la consola
     print("--------------------------------------------------")
     print(f"La aplicación Flask está corriendo en http://127.0.0.1:{port_number}")
     print("Haz clic en el enlace de arriba para abrir la aplicación en tu navegador.")
@@ -468,6 +534,5 @@ if __name__ == '__main__':
     try:
         app.run(host=host_ip, port=port_number, debug=False)
     finally:
-        # Esto se ejecuta si la aplicación se detiene
         if cap is not None:
             cap.release()
