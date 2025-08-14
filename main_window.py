@@ -4,7 +4,7 @@ from flask import Flask, render_template_string, Response, request, jsonify
 import cv2
 import os
 from core.gemini_process import generate_image_with_gemini
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 import base64
 import threading
@@ -40,6 +40,46 @@ EMAIL_CONFIG = {
     'port' : 587 # Puerto para TLS
 }
 
+# --- ¡NUEVO! Diccionario de abreviaturas de profesiones ---
+ABBREVIATIONS = {
+    "administracion de empresas": "ADM",
+    "antropologia": "ANT",
+    "arquitectura": "ARQ",
+    "biomedicina": "BIO-MED",
+    "bioquimica y farmacia": "BQ-FM",
+    "biotecnologia": "B-TEC",
+    "ciencias de datos": "CDT",
+    "ciencias politicas": "CP",
+    "comercio exterior": "CEX",
+    "comunicacion": "COM",
+    "computacion": "COMP",
+    "contabilidad y auditoria": "CAUD",
+    "derecho": "DER",
+    "diseno multimedia": "D-MULT",
+    "economia": "ECO",
+    "educacion basica": "EBAS",
+    "educacion inicial": "EINI",
+    "educacion intercultural bilingue": "EIB",
+    "electronica y automatizacion": "EL-AUT",
+    "electricidad": "ELEC",
+    "enfermeria": "ENF",
+    "finanzas": "FIN",
+    "fisioterapia": "FIS",
+    "gestion ambiental": "G-AMB",
+    "ingenieria automotriz": "I-AUT",
+    "ingenieria civil": "I-CIV",
+    "ingenieria industrial": "I-IND",
+    "marketing e inteligencia de mercados": "MKT-IM",
+    "mecatronica": "MEC",
+    "negocios digitales": "NEG-DIG",
+    "odontologia": "ODON",
+    "pedagogia de la actividad fisica y deporte": "P-AFD",
+    "psicologia": "PSIC",
+    "psicologia clinica": "P-CLI",
+    "software": "SOFT",
+    "teologia": "TEO"
+}
+
 def get_camera_feed():
     """Genera el feed de la cámara para la interfaz web."""
     global cap
@@ -68,8 +108,10 @@ def generate_image_process(original_path, profession):
     print("Enviando foto a Gemini... Esto puede tomar unos segundos.")
     generated_image_bytes = generate_image_with_gemini(original_path, profession)
 
-def superponer_marco(imagen_generada_bytes, ruta_marco):
-    """Superpone un marco a la imagen generada."""
+def superponer_marco_texto(imagen_generada_bytes, ruta_marco, nombre_est, profesion):
+    """
+    Superpone un marco y agrega el texto con la abreviatura y el nombre a la imagen generada.
+    """
     try:
         # Cargar la imagen generada y el marco
         img_generada = Image.open(BytesIO(imagen_generada_bytes))
@@ -80,6 +122,35 @@ def superponer_marco(imagen_generada_bytes, ruta_marco):
         
         # Superponer el marco (asumiendo que el marco tiene transparencia)
         img_generada.paste(img_marco, (0, 0), img_marco)
+
+        # Agrega el texto
+        draw = ImageDraw.Draw(img_generada)
+
+        # Obtener la abreviatura de la profesion
+        abreviatura_profesion = ABBREVIATIONS.get(profesion, profesion.upper())
+
+        # Crear el texto a mostrar
+        texto = f"{abreviatura_profesion}. {nombre_est}"
+
+        # Definir la fuente y el tamaño (ajustar según el diseño)
+        try:
+            font = ImageFont.truetype("arial.ttf", 60)
+        except IOError:
+            font = ImageFont.load_default()
+            print("Fuente 'arial.ttf' no encontrada, usando la fuente por defecto.")
+
+        # Calcular el tamaño del texto para centrarlo
+        bbox = draw.textbbox((0,0), texto, font=font)
+        text_width = bbox[2] - bbox[0]
+        text_height = bbox[3] - bbox[1]
+
+        # Coordenadas para centrar el texto en la parte inferior (ajustar el 100 según el diseño)
+        image_width, image_height = img_generada.size
+        x_pos = (image_width - text_width) / 2
+        y_pos = image_height - text_height - 100
+
+        # Dibujar el texto en la imagen
+        draw.text((x_pos, y_pos), texto, font=font, fill=(255, 255, 255))
         
         # Guardar la imagen final en un buffer para ser usada
         buffer = BytesIO()
@@ -386,6 +457,7 @@ def capture():
 
     data = request.get_json()
     profession = data.get('profesion')
+    nombre_est = data.get('nombre') # <-- ¡NUEVO! Obtenemos el nombre del estudiante
 
     if not profession:
         return jsonify({"status": "error", "message": "No se seleccionó ninguna profesión."})
@@ -404,7 +476,12 @@ def capture():
 
     if generated_image_bytes:
         # Superponer el marco a la imagen generada
-        final_image_bytes = superponer_marco(generated_image_bytes.data, marco_path)
+        final_image_bytes = superponer_marco_texto(
+            generated_image_bytes.data, 
+            marco_path,
+            nombre_est,
+            profession
+            ) # <-- ¡MODIFICACIÓN! Pasamos el nombre y la profesión
         
         if final_image_bytes:
             # Guardar la imagen final con el marco
