@@ -86,7 +86,7 @@ def create_dynamic_prompt(profession):
             "transforma a la persona en esta foto para que esté vestida con un traje formal de abogado, en un despacho de abogados con una vista de la ciudad. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "transforma a la persona en esta foto para que esté vestida como un abogado, de pie en la entrada de un tribunal. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "diseno multimedia": [
+        "diseño multimedia": [
             "transforma a la persona en esta foto para que esté vestida con ropa casual de diseñador, en un estudio de diseño con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pantalla con un diseño gráfico. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "transforma a la persona en esta foto para que esté vestida con ropa de diseñador, trabajando en una tableta gráfica. Mantén el fotorrealismo, la misma pose, expresión facial e género."
@@ -97,14 +97,14 @@ def create_dynamic_prompt(profession):
             "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, dando una conferencia en un auditorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "educacion basica": [
-            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, en una sala de reuniones. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, analizando gráficos de mercado. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, dando una conferencia en un auditorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
-        ],
-        "educacion inicial": [
             "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, en un aula con niños. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, de pie frente a una pizarra enseñando. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, supervisando a los estudiantes en una biblioteca escolar. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+        ],
+        "educacion inicial": [
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un aula de preescolar. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, leyendo un libro a un grupo de niños. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un patio de juegos con niños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "educacion intercultural bilingue": [
             "transforma a la persona en esta foto para que esté vestida con ropa tradicional, en un aula de una comunidad bilingüe enseñando. Mantén el fotorrealismo, la misma pose, expresión facial e género.",

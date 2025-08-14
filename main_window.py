@@ -14,7 +14,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from dotenv import load_dotenv
-import pandas as pd # <-- ¡Nuevo! Importamos pandas
+import pandas as pd
 
 load_dotenv()
 
@@ -31,7 +31,7 @@ lock = threading.Lock()
 generated_image_bytes = None
 generated_image_path = os.path.join(image_dir, "generated.png") # Ruta para la imagen generada
 marco_path = os.path.join(image_dir, "marco.png") # Ruta del marco
-EXCEL_FILE_PATH = "registros_estudiantes.xlsx" # <-- ¡Nuevo! Ruta para el archivo de Excel
+EXCEL_FILE_PATH = "registros_estudiantes.xlsx"
 
 EMAIL_CONFIG = {
     'sender': 'proyectofotoia@gmail.com', # Tu dirección de email
@@ -40,44 +40,44 @@ EMAIL_CONFIG = {
     'port' : 587 # Puerto para TLS
 }
 
-# --- ¡NUEVO! Diccionario de abreviaturas de profesiones ---
+# Diccionario de abreviaturas de profesiones
 ABBREVIATIONS = {
-    "administracion de empresas": "ADM",
-    "antropologia": "ANT",
-    "arquitectura": "ARQ",
-    "biomedicina": "BIO-MED",
-    "bioquimica y farmacia": "BQ-FM",
-    "biotecnologia": "B-TEC",
-    "ciencias de datos": "CDT",
-    "ciencias politicas": "CP",
-    "comercio exterior": "CEX",
-    "comunicacion": "COM",
-    "computacion": "COMP",
-    "contabilidad y auditoria": "CAUD",
-    "derecho": "DER",
-    "diseno multimedia": "D-MULT",
-    "economia": "ECO",
-    "educacion basica": "EBAS",
-    "educacion inicial": "EINI",
-    "educacion intercultural bilingue": "EIB",
-    "electronica y automatizacion": "EL-AUT",
-    "electricidad": "ELEC",
-    "enfermeria": "ENF",
-    "finanzas": "FIN",
-    "fisioterapia": "FIS",
-    "gestion ambiental": "G-AMB",
-    "ingenieria automotriz": "I-AUT",
-    "ingenieria civil": "I-CIV",
-    "ingenieria industrial": "I-IND",
-    "marketing e inteligencia de mercados": "MKT-IM",
-    "mecatronica": "MEC",
-    "negocios digitales": "NEG-DIG",
-    "odontologia": "ODON",
-    "pedagogia de la actividad fisica y deporte": "P-AFD",
-    "psicologia": "PSIC",
-    "psicologia clinica": "P-CLI",
-    "software": "SOFT",
-    "teologia": "TEO"
+    "administracion de empresas": "Lic",
+    "antropologia": "Lic",
+    "arquitectura": "Arq",
+    "biomedicina": "Ing",
+    "bioquimica y farmacia": "Bioq.F",
+    "biotecnologia": "Ing",
+    "ciencias de datos": "Ing",
+    "ciencias politicas": "Lic",
+    "comercio exterior": "Lic",
+    "comunicacion": "Lic",
+    "computacion": "Ing",
+    "contabilidad y auditoria": "Lic",
+    "derecho": "Abg",
+    "diseño multimedia": "Lic",
+    "economia": "Lic",
+    "educacion basica": "Lic",
+    "educacion inicial": "Lic",
+    "educacion intercultural bilingue": "Lic",
+    "electronica y automatizacion": "Ing",
+    "electricidad": "Ing",
+    "enfermeria": "Lic",
+    "finanzas": "Lic",
+    "fisioterapia": "Lic",
+    "gestion ambiental": "Lic",
+    "ingenieria automotriz": "Ing",
+    "ingenieria civil": "Ing",
+    "ingenieria industrial": "Ing",
+    "marketing e inteligencia de mercados": "Lic",
+    "mecatronica": "Ing",
+    "negocios digitales": "Lic",
+    "odontologia": "Od",
+    "pedagogia de la actividad fisica y deporte": "Lic",
+    "psicologia": "Lic",
+    "psicologia clinica": "Psic. clín",
+    "software": "Ing",
+    "teologia": "Lic"
 }
 
 def get_camera_feed():
@@ -98,7 +98,7 @@ def get_camera_feed():
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
-                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
             
 def generate_image_process(original_path, profession):
     """
@@ -134,7 +134,7 @@ def superponer_marco_texto(imagen_generada_bytes, ruta_marco, nombre_est, profes
 
         # Definir la fuente y el tamaño (ajustar según el diseño)
         try:
-            font = ImageFont.truetype("arial.ttf", 60)
+            font = ImageFont.truetype("arial.ttf", 45)
         except IOError:
             font = ImageFont.load_default()
             print("Fuente 'arial.ttf' no encontrada, usando la fuente por defecto.")
@@ -149,8 +149,15 @@ def superponer_marco_texto(imagen_generada_bytes, ruta_marco, nombre_est, profes
         x_pos = (image_width - text_width) / 2
         y_pos = image_height - text_height - 100
 
-        # Dibujar el texto en la imagen
-        draw.text((x_pos, y_pos), texto, font=font, fill=(255, 255, 255))
+        # Dibujar el texto en la imagen con color naranja y borde blanco
+        draw.text(
+            (x_pos, y_pos), 
+            texto, 
+            font=font, 
+            fill=(255, 165, 0),          # Color del texto (Naranja)
+            stroke_width=3,              # Grosor del borde
+            stroke_fill=(0, 0, 0)  # Color del borde (negro)
+        )
         
         # Guardar la imagen final en un buffer para ser usada
         buffer = BytesIO()
@@ -164,7 +171,7 @@ def superponer_marco_texto(imagen_generada_bytes, ruta_marco, nombre_est, profes
         print(f"Error al superponer el marco: {e}")
         return None
 
-# --- ¡NUEVA FUNCIÓN! Guardar datos en Excel ---
+# Guardar datos en Excel
 def save_student_data(data):
     """Guarda los datos del estudiante en un archivo de Excel."""
     try:
@@ -215,7 +222,7 @@ def index():
                 }
                 #original_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
                 #generated_image { border: 5px solid #F5EF2C; width: 98%; height: -88%; object-fit: contain; }
-                                
+                                        
                 .form-container { 
                     width: 300px; 
                     padding: 20px; 
@@ -230,7 +237,7 @@ def index():
                     width: 100%;  
                     margin-bottom: 15px;
                 }
-                                     
+                                            
                 .form-container label, .form-container input, .form-container select { 
                     display: block; 
                     width: 100%; 
@@ -271,7 +278,7 @@ def index():
                             <option value="computacion">Computacion</option>
                             <option value="contabilidad y auditoria">Contabilidad y Auditoria</option>
                             <option value="derecho">Derecho</option>
-                            <option value="diseno multimedia">Diseno Multimedia</option>
+                            <option value="diseño multimedia">Diseño Multimedia</option>
                             <option value="economia">Economia</option>
                             <option value="educacion basica">Educación Básica</option>
                             <option value="educacion inicial">Educacion Inicial</option>
@@ -305,7 +312,7 @@ def index():
                         <button type="button" onclick="sendToEmail()">Enviar Email</button>
                     </form>
                 </div>
-                                     
+                                        
                 <div class="image-box">
                     <h2>En Vivo</h2>
                     <img id="original_image" src="{{ url_for('video_feed') }}">
@@ -363,17 +370,17 @@ def index():
                             }
                         });
                 }
-                                     
+                                        
                 function sendToEmail(){
                     const form = document.getElementById('data-form');
                     const formData = new FormData(form);
                     const email_address = formData.get('email')
-                                     
+                                            
                     if (document.getElementById('generated_image').src === "") {
                         alert("Primero debes generar una imagen.");
                         return;
                     }
-                                     
+                                            
                     fetch('/send_to_email', {
                         method: 'POST',
                         body: JSON.stringify({
@@ -394,7 +401,7 @@ def index():
                         console.error('Error:', error);
                         alert('Ocurrió un error al enviar el email.');
                     });
-                                     
+                                            
                 }
 
                 function sendToWhatsapp() {
@@ -402,6 +409,7 @@ def index():
                     const formData = new FormData(form);
                     const whatsapp_number = formData.get('whatsapp');
                     const profesion = formData.get('profesion');
+                    const email_address = formData.get('email'); // <-- ¡Nuevo! Obtener el email
 
                     if (!whatsapp_number) {
                         alert("Por favor, ingresa un número de WhatsApp.");
@@ -418,7 +426,8 @@ def index():
                         body: JSON.stringify({
                             whatsapp: whatsapp_number,
                             nombre: formData.get('nombre'),
-                            profesion: profesion
+                            profesion: profesion,
+                            email: email_address // <-- ¡Nuevo! Enviar el email
                         }),
                         headers: {
                             'Content-Type': 'application/json'
@@ -457,7 +466,7 @@ def capture():
 
     data = request.get_json()
     profession = data.get('profesion')
-    nombre_est = data.get('nombre') # <-- ¡NUEVO! Obtenemos el nombre del estudiante
+    nombre_est = data.get('nombre')
 
     if not profession:
         return jsonify({"status": "error", "message": "No se seleccionó ninguna profesión."})
@@ -481,7 +490,7 @@ def capture():
             marco_path,
             nombre_est,
             profession
-            ) # <-- ¡MODIFICACIÓN! Pasamos el nombre y la profesión
+            )
         
         if final_image_bytes:
             # Guardar la imagen final con el marco
@@ -508,7 +517,7 @@ def send_to_email():
     nombre = data.get('nombre')
     profesion = data.get('profesion')
     
-    # --- ¡Nuevo! Registramos los datos en el Excel ---
+    # Registramos los datos en el Excel
     student_data = {'nombre': nombre, 'profesion': profesion, 'email': email, 'whatsapp': None}
     save_student_data(student_data)
 
@@ -561,9 +570,10 @@ def send_to_whatsapp():
     whatsapp_number = data.get('whatsapp')
     nombre = data.get('nombre')
     profesion = data.get('profesion')
+    email = data.get('email') # <-- ¡Nuevo! Obtener el email de los datos recibidos
     
-    # --- ¡Nuevo! Registramos los datos en el Excel ---
-    student_data = {'nombre': nombre, 'profesion': profesion, 'email': None, 'whatsapp': whatsapp_number}
+    # Registramos los datos en el Excel
+    student_data = {'nombre': nombre, 'profesion': profesion, 'email': email, 'whatsapp': whatsapp_number}
     save_student_data(student_data)
 
     if not whatsapp_number:
