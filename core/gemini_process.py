@@ -22,184 +22,184 @@ def create_dynamic_prompt(profession):
     # Diccionario con listas de prompts para cada profesión
     profession_prompts = {
         "administracion de empresas": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, en una sala de reuniones. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, en una oficina moderna con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, de pie frente a una pizarra de finanzas. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, en una sala de reuniones. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, en una oficina moderna con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un administrador de empresas, de pie frente a una pizarra de finanzas. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "antropologia": [
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de campo, en un sitio de excavación arqueológica. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, en un museo de antropología, examinando artefactos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de viaje, en una comunidad cultural, interactuando con los lugareños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de campo, en un sitio de excavación arqueológica. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, en un museo de antropología, examinando artefactos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de viaje, en una comunidad cultural, interactuando con los lugareños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "arquitectura": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, en un estudio de diseño con planos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, visitando una obra de construcción con un casco. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, presentando una maqueta de un edificio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, en un estudio de diseño con planos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, visitando una obra de construcción con un casco. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un arquitecto, presentando una maqueta de un edificio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "biomedicina": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, en un laboratorio con microscopios. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, analizando muestras médicas en un ambiente estéril. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, de pie en un laboratorio de investigación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, en un laboratorio con microscopios. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, analizando muestras médicas en un ambiente estéril. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un biomédico, de pie en un laboratorio de investigación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "bioquimica y farmacia": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un bioquímico, manipulando químicos en un laboratorio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un farmacéutico, atendiendo a un cliente en una farmacia. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un bioquímico, examinando medicamentos en un laboratorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un bioquímico, manipulando químicos en un laboratorio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un farmacéutico, atendiendo a un cliente en una farmacia. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un bioquímico, examinando medicamentos en un laboratorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "biotecnologia": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, en un laboratorio de genética con equipos avanzados. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, observando células en un microscopio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, de pie en un invernadero de alta tecnología. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, en un laboratorio de genética con equipos avanzados. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, observando células en un microscopio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un biotecnólogo, de pie en un invernadero de alta tecnología. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "ciencias de datos": [
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de programador, en una sala de servidores con gráficos de datos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, analizando big data en una pantalla con visualizaciones complejas. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie en una oficina moderna con un grupo de data scientists. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de programador, en una sala de servidores con gráficos de datos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, analizando big data en una pantalla con visualizaciones complejas. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, de pie en una oficina moderna con un grupo de data scientists. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "ciencias politicas": [
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, en un podio dando un discurso. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, en una sala de conferencias de la ONU. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, en un debate político televisado. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, en un podio dando un discurso. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, en una sala de conferencias de la ONU. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, en un debate político televisado. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "comercio exterior": [
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, en una terminal portuaria con contenedores de carga. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, en una oficina de aduanas. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, de pie junto a un mapa del mundo con rutas de comercio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, en una terminal portuaria con contenedores de carga. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, en una oficina de aduanas. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, de pie junto a un mapa del mundo con rutas de comercio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "comunicacion": [
-            "transforma a la persona en esta foto para que esté vestida con un traje casual de presentador, en un set de noticias de televisión. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, en una cabina de radio con micrófono. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, entrevistando a una persona en la calle. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje casual de presentador, en un set de noticias de televisión. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, en una cabina de radio con micrófono. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, entrevistando a una persona en la calle. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "computacion": [
-            "transforma a la persona en esta foto para que esté vestida con ropa de programador, en una oficina de tecnología con múltiples monitores. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pizarra con código de programación. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, trabajando en una computadora en una cafetería. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa de programador, en una oficina de tecnología con múltiples monitores. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pizarra con código de programación. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, trabajando en una computadora en una cafetería. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "contabilidad y auditoria": [
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una oficina con libros contables. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un contador, revisando documentos financieros. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una sala de juntas. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una oficina con libros contables. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un contador, revisando documentos financieros. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una sala de juntas. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "derecho": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un abogado, en una sala de corte con estanterías de libros legales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal de abogado, en un despacho de abogados con una vista de la ciudad. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida como un abogado, de pie en la entrada de un tribunal. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un abogado, en una sala de corte con estanterías de libros legales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal de abogado, en un despacho de abogados con una vista de la ciudad. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.ransforma a la persona en esta foto para que esté vestida como un abogado, de pie en la entrada de un tribunal. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "diseño multimedia": [
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de diseñador, en un estudio de diseño con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pantalla con un diseño gráfico. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa de diseñador, trabajando en una tableta gráfica. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de diseñador, en un estudio de diseño con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pantalla con un diseño gráfico. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa de diseñador, trabajando en una tableta gráfica. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "economia": [
-            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, en una sala de reuniones. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, analizando gráficos de mercado. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal de economista, dando una conferencia en un auditorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal de economista, en una sala de reuniones. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal de economista, analizando gráficos de mercado. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal de economista, dando una conferencia en un auditorio. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "educacion basica": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, en un aula con niños. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, de pie frente a una pizarra enseñando. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, supervisando a los estudiantes en una biblioteca escolar. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, en un aula con niños. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, de pie frente a una pizarra enseñando. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación básica, supervisando a los estudiantes en una biblioteca escolar. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "educacion inicial": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un aula de preescolar. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, leyendo un libro a un grupo de niños. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un patio de juegos con niños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un aula de preescolar. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, leyendo un libro a un grupo de niños. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un profesor de educación inicial, en un patio de juegos con niños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "educacion intercultural bilingue": [
-            "transforma a la persona en esta foto para que esté vestida con ropa tradicional, en un aula de una comunidad bilingüe enseñando. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa tradicional, de pie en una escuela rural con estudiantes. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa tradicional, en una actividad comunitaria con un grupo de niños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa tradicional, en un aula de una comunidad bilingüe enseñando. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa tradicional, de pie en una escuela rural con estudiantes. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa tradicional, en una actividad comunitaria con un grupo de niños. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "electronica y automatizacion": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, en un laboratorio con placas de circuitos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, de pie junto a una maquinaria automatizada. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, manipulando un robot industrial. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, en un laboratorio con placas de circuitos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, de pie junto a una maquinaria automatizada. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero en electrónica, manipulando un robot industrial. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "electricidad": [
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un electricista, trabajando con un panel eléctrico en un taller. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido como electricista, con un casco y herramientas, en una obra de construcción. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestido con el uniforme de un electricista, de pie junto a un transformador de energía en un ambiente industrial. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestido con el uniforme de un electricista, trabajando con un panel eléctrico en un taller. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestido como electricista, con un casco y herramientas, en una obra de construcción. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestido con el uniforme de un electricista, de pie junto a un transformador de energía en un ambiente industrial. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "enfermeria": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, en una sala de hospital. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, atendiendo a un paciente en una camilla. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, en una clínica de salud. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, en una sala de hospital. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, atendiendo a un paciente en una camilla. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de una enfermera, en una clínica de salud. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "finanzas": [
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, en una sala de bolsa de valores con monitores de precios. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una oficina de inversión con gráficos de rendimiento. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con un traje formal, presentando un informe financiero a un equipo de ejecutivos. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, en una sala de bolsa de valores con monitores de precios. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, de pie en una oficina de inversión con gráficos de rendimiento. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal, presentando un informe financiero a un equipo de ejecutivos. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "fisioterapia": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, en una clínica con equipos de rehabilitación. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, ayudando a un paciente a hacer ejercicio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, en una sesión de rehabilitación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, en una clínica con equipos de rehabilitación. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.ransforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, ayudando a un paciente a hacer ejercicio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un fisioterapeuta, en una sesión de rehabilitación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "gestion ambiental": [
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de campo, en una reserva natural con árboles y animales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa de trabajo, de pie en una planta de reciclaje con maquinaria. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa de trabajo, analizando muestras de agua en un río. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de campo, en una reserva natural con árboles y animales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa de trabajo, de pie en una planta de reciclaje con maquinaria. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa de trabajo, analizando muestras de agua en un río. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "ingenieria automotriz": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, trabajando en el motor de un coche. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, diseñando un vehículo en un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, en una fábrica de coches. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, trabajando en el motor de un coche. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, diseñando un vehículo en un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero automotriz, en una fábrica de coches. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "ingenieria civil": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, en una obra de construcción con un casco. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, revisando planos de un edificio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, de pie en un puente. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, en una obra de construcción con un casco. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, revisando planos de un edificio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero civil, de pie en un puente. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "ingenieria industrial": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, en una línea de producción optimizada. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, de pie en una fábrica con robots. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, analizando un proceso de fabricación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, en una línea de producción optimizada. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, de pie en una fábrica con robots. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero industrial, analizando un proceso de fabricación. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "marketing e inteligencia de mercados": [
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en una sala de reuniones con una presentación de marketing. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pizarra con un mapa de estrategias de mercado. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en un espacio de coworking con gráficos de datos de clientes. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en una sala de reuniones con una presentación de marketing. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pizarra con un mapa de estrategias de mercado. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en un espacio de coworking con gráficos de datos de clientes. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "mecatronica": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, de pie en un taller de robótica. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, ensamblando un robot. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, trabajando en una interfaz humano-robot. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, de pie en un taller de robótica. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, ensamblando un robot. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un ingeniero mecatrónico, trabajando en una interfaz humano-robot. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "negocios digitales": [
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en una oficina de marketing digital con gráficos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, de pie frente a una pizarra con estrategias digitales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en un espacio de coworking. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en una oficina de marketing digital con gráficos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, de pie frente a una pizarra con estrategias digitales. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de negocios, en un espacio de coworking. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "odontologia": [
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, en un consultorio dental. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, con un paciente en la silla. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, sosteniendo herramientas dentales. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, en un consultorio dental. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, con un paciente en la silla. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con el uniforme de un odontólogo, sosteniendo herramientas dentales. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "pedagogia de la actividad fisica y deporte": [
-            "transforma a la persona en esta foto para que esté vestida con ropa deportiva, en una cancha de baloncesto con estudiantes. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa deportiva, en un gimnasio con equipos de entrenamiento. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa deportiva, enseñando a un grupo de niños a jugar al fútbol. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa deportiva, en una cancha de baloncesto con estudiantes. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa deportiva, en un gimnasio con equipos de entrenamiento. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa deportiva, enseñando a un grupo de niños a jugar al fútbol. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "psicologia": [
-            "transforma a la persona en esta foto para que esté vestida como un psicólogo, en un consultorio con un diván. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida como un psicólogo, de pie en una sala de terapia grupal. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida como un psicólogo, escribiendo notas en un portapapeles. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida como un psicólogo, en un consultorio con un diván. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida como un psicólogo, de pie en una sala de terapia grupal. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida como un psicólogo, escribiendo notas en un portapapeles. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "psicologia clinica": [
-            "transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, en un consultorio con un diván. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, de pie en un hospital con un portapapeles. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, en una sesión de terapia. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, en un consultorio con un diván. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, de pie en un hospital con un portapapeles. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida como un psicólogo clínico, en una sesión de terapia. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "software": [
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de programador, en una oficina de desarrollo de software con múltiples monitores. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pizarra con diagramas de flujo. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa casual de programador, trabajando en una aplicación móvil. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de programador, en una oficina de desarrollo de software con múltiples monitores. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pizarra con diagramas de flujo. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de programador, trabajando en una aplicación móvil. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
         "teologia": [
-            "transforma a la persona en esta foto para que esté vestida con ropa de teólogo, en una biblioteca con libros antiguos y manuscritos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa formal, dando una conferencia sobre teología en un auditorio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
-            "transforma a la persona en esta foto para que esté vestida con ropa de teólogo, de pie en un claustro con vidrieras. Mantén el fotorrealismo, la misma pose, expresión facial e género."
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa de teólogo, en una biblioteca con libros antiguos y manuscritos. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa formal, dando una conferencia sobre teología en un auditorio. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
+            "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa de teólogo, de pie en un claustro con vidrieras. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
     }
 
