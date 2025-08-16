@@ -355,7 +355,7 @@ def index():
                             <option value="computacion">Computacion</option>
                             <option value="contabilidad y auditoria">Contabilidad y Auditoria</option>
                             <option value="derecho">Derecho</option>
-                            <option value="diseno multimedia">Diseno Multimedia</option>
+                            <option value="diseno multimedia">Diseño Multimedia</option>
                             <option value="economia">Economia</option>
                             <option value="educacion basica">Educación Básica</option>
                             <option value="educacion inicial">Educacion Inicial</option>
@@ -459,6 +459,7 @@ def index():
                     const form = document.getElementById('data-form');
                     const formData = new FormData(form);
                     const email_address = formData.get('email')
+                    const whatsapp_number = formData.get('whatsapp');
                                                                                      
                     if (document.getElementById('generated_image_1').src === "" || document.getElementById('generated_image_2').src === "") {
                         alert("Primero debes generar las imágenes.");
@@ -470,6 +471,7 @@ def index():
                         body: JSON.stringify({
                             email: email_address,
                             nombre: formData.get('nombre'),
+                            whatsapp: whatsapp_number,
                             profesion: formData.get('profesion')
                         }),
                         headers: {
@@ -625,9 +627,10 @@ def send_to_email():
     email = data.get('email')
     nombre = data.get('nombre')
     profesion = data.get('profesion')
+    whatsapp_number = data.get('whatsapp')  # <-- Añadido para capturar el número de WhatsApp
 
     # Registramos los datos en el Excel
-    student_data = {'nombre': nombre, 'profesion': profesion, 'email': email, 'whatsapp': None}
+    student_data = {'nombre': nombre, 'profesion': profesion, 'email': email, 'whatsapp': whatsapp_number}
     save_student_data(student_data)
 
     if not os.path.exists(generated_image_path_1) or not os.path.exists(generated_image_path_2):

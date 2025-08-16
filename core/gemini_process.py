@@ -86,7 +86,7 @@ def create_dynamic_prompt(profession):
             "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con un traje formal de abogado, en un despacho de abogados con una vista de la ciudad. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "La imagen debe ser en formato retrato vertical.ransforma a la persona en esta foto para que esté vestida como un abogado, de pie en la entrada de un tribunal. Mantén el fotorrealismo, la misma pose, expresión facial e género."
         ],
-        "diseño multimedia": [
+        "diseno multimedia": [
             "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual de diseñador, en un estudio de diseño con un ordenador. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa casual, de pie frente a una pantalla con un diseño gráfico. Mantén el fotorrealismo, la misma pose, expresión facial e género.",
             "La imagen debe ser en formato retrato vertical.transforma a la persona en esta foto para que esté vestida con ropa de diseñador, trabajando en una tableta gráfica. Mantén el fotorrealismo, la misma pose, expresión facial e género."
