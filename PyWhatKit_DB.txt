@@ -1,0 +1,30 @@
+Date: 15/8/2025
+Time: 9:31
+Phone Number: +593984907232
+Image: assets/images\combined_image.png
+Caption: Hola Erick Baque, aquí están tus dos imágenes generadas con la profesión de electronica y automatizacion. ¡Esperamos que te gusten!
+--------------------
+Date: 15/8/2025
+Time: 9:42
+Group ID: 0959607816
+Image: assets/images\combined_image.png
+Caption: Hola Jeanpiere Mora, aquí están tus dos imágenes generadas con la profesión de electricidad. ¡Esperamos que te gusten!
+--------------------
+Date: 15/8/2025
+Time: 10:54
+Phone Number: +593999491807
+Image: assets/images\combined_image.png
+Caption: Hola Santiago Cordovilla, aquí están tus dos imágenes generadas con la profesión de ingenieria industrial. ¡Esperamos que te gusten!
+--------------------
+Date: 15/8/2025
+Time: 10:59
+Phone Number: +593983217412
+Image: assets/images\combined_image.png
+Caption: Hola Jenniffer Murillo, aquí están tus dos imágenes generadas con la profesión de derecho. ¡Esperamos que te gusten!
+--------------------
+Date: 15/8/2025
+Time: 12:2
+Phone Number: +593960252199
+Image: assets/images\combined_image.png
+Caption: Hola Freddy Potes, aquí están tus dos imágenes generadas con la profesión de software. ¡Esperamos que te gusten!
+--------------------
